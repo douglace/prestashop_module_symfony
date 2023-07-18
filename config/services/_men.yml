@@ -1,0 +1,55 @@
+services:
+  _defaults:
+    public: true
+  
+  # grid
+  yatpush.grid.definition.factory.men:
+    public: true
+    class: 'Yateo\Yatpush\Grid\Definition\Factory\MenGridDefinitionFactory'
+    parent: 'prestashop.core.grid.definition.factory.abstract_grid_definition'
+
+  yatpush.grid.query_builder.men:
+    class: 'Yateo\Yatpush\Grid\Query\MenQueryBuilder'
+    parent: 'prestashop.core.grid.abstract_query_builder'
+    public: true
+    arguments:
+      - '@prestashop.core.query.doctrine_search_criteria_applicator'
+      - "@=service('prestashop.adapter.legacy.context').getContext().language.id"
+      - '@prestashop.core.grid.query.filter.doctrine_filter_applicator'
+
+  yatpush.grid.data.factory.men:
+    class: '%prestashop.core.grid.data.factory.doctrine_grid_data_factory%'
+    arguments:
+      - '@yatpush.grid.query_builder.men'
+      - '@prestashop.core.hook.dispatcher'
+      - '@prestashop.core.grid.query.doctrine_query_parser'
+      - 'pushmen'
+
+  yatpush.grid.grid_factory.men:
+    class: 'PrestaShop\PrestaShop\Core\Grid\GridFactory'
+    public: true
+    arguments:
+      - '@yatpush.grid.definition.factory.men'
+      - '@yatpush.grid.data.factory.men_decorator'
+      - '@prestashop.core.grid.filter.form_factory'
+      - '@prestashop.core.hook.dispatcher'
+
+  yatpush.grid.data.factory.men_decorator:
+    class: 'Yateo\Yatpush\Grid\Data\Factory\MenGridDataFactory'
+    arguments:
+      - '@yatpush.grid.data.factory.men'
+      - '@yatpush.adapter.men.men_logo_thumbnail_provider'
+  
+  yatpush.adapter.men.men_logo_thumbnail_provider:
+    class: 'Yateo\Yatpush\Adapter\LogoThumbnailProvider'
+    arguments:
+      - '@prestashop.core.image.parser.image_tag_source_parser'
+
+  # Position
+
+  yatpush.men.grid.position_definition:
+    class: 'PrestaShop\PrestaShop\Core\Grid\Position\PositionDefinition'
+    arguments:
+      $table: 'yateo_push'
+      $idField: 'id_yateo_push'
+      $positionField: 'position'

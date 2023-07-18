@@ -1,0 +1,114 @@
+imports:
+  - { resource: ../services/*.yml }
+  - { resource: ../common.yml }
+
+services:
+  _defaults:
+    public: true
+  
+  # Form
+
+  yatpush.type.push:
+    class: 'Yateo\Yatpush\Form\Type\PushType'
+    parent: 'form.type.translatable.aware'
+    public: true
+    tags:
+      - { name: form.type }
+
+  yatpush.form.identifiable_object.data.provider.push:
+    class: 'Yateo\Yatpush\Form\Provider\PushFormDataProvider'
+    arguments:
+      - '@yatpush.repository.push.repository'
+
+  yatpush.form.identifiable.object.builder.push:
+    class: 'PrestaShop\PrestaShop\Core\Form\IdentifiableObject\Builder\FormBuilder'
+    factory: 'prestashop.core.form.builder.form_builder_factory:create'
+    arguments:
+      - 'Yateo\Yatpush\Form\Type\PushType'
+      - '@yatpush.form.identifiable_object.data.provider.push'
+
+  yatpush.form.identifiable.object.handler.push:
+    class: 'PrestaShop\PrestaShop\Core\Form\IdentifiableObject\Handler\FormHandler'
+    factory: 'prestashop.core.form.identifiable_object.handler.form_handler_factory:create'
+    arguments:
+      - '@yatpush.form.identifiable.object.data.handler.push'
+  
+  yatpush.form.identifiable.object.data.handler.push:
+    class: 'Yateo\Yatpush\Form\DataHandler\PushFormDataHandler'
+    arguments:
+      - '@prestashop.core.command_bus' 
+      - '@yatpush.command.builder.push'
+
+  yatpush.command.builder.push:
+    class: 'Yateo\Yatpush\CommandBuilder\PushCommandBuilder'
+
+  yatpush.command.handler.add_push: 
+    class: 'Yateo\Yatpush\CommandHandler\AddPushCommandHandler' 
+    arguments: 
+      - '@validator' 
+    tags: 
+      - { name: 'tactician.handler', command: 'Yateo\Yatpush\Command\AddPushCommand' } 
+
+  yatpush.command.handler.edit_push: 
+    class: 'Yateo\Yatpush\CommandHandler\EditPushCommandHandler' 
+    arguments: 
+      - '@yatpush.repository.push.repository' 
+      - '@doctrine.orm.default_entity_manager' 
+    tags: 
+      - { name: 'tactician.handler', command: 'Yateo\Yatpush\Command\EditPushCommand' } 
+
+  yatpush.command.handler.delete_push: 
+    class: 'Yateo\Yatpush\CommandHandler\DeletePushCommandHandler' 
+    arguments: 
+      - '@yatpush.repository.push.repository' 
+      - '@doctrine.orm.default_entity_manager' 
+    tags: 
+      - { name: 'tactician.handler', command: 'Yateo\Yatpush\Command\DeletePushCommand' }
+
+  yatpush.command.handler.toggle_push: 
+    class: 'Yateo\Yatpush\CommandHandler\TogglePushCommandHandler' 
+    arguments: 
+      - '@yatpush.repository.push.repository' 
+      - '@doctrine.orm.default_entity_manager' 
+    tags: 
+      - { name: 'tactician.handler', command: 'Yateo\Yatpush\Command\TogglePushCommand' } 
+  
+  # Query bus
+  yatpush.query.handler.toggle.push:
+    class: Yateo\Yatpush\QueryHandler\GetPushIsEnabledHandler 
+    arguments: 
+      - '@yatpush.repository.push.repository' 
+    tags:
+      - name: tactician.handler
+        command: Yateo\Yatpush\Query\GetPushIsEnabled
+
+  yatpush.command_handler.bulk_delete_push_handler:
+    class: Yateo\Yatpush\CommandHandler\BulkDeletePushCommandHandler
+    arguments: 
+      - '@yatpush.repository.push.repository' 
+      - '@doctrine.orm.default_entity_manager' 
+    tags:
+      - name: tactician.handler
+        command: Yateo\Yatpush\Command\BulkDeletePushCommand
+  
+  yatpush.command_handler.bulk_enable_push_handler:
+    class: Yateo\Yatpush\CommandHandler\BulkEnablePushCommandHandler
+    arguments: 
+      - '@yatpush.repository.push.repository' 
+      - '@doctrine.orm.default_entity_manager' 
+    tags:
+      - name: tactician.handler
+        command: Yateo\Yatpush\Command\BulkEnablePushCommand
+  
+  yatpush.command_handler.bulk_disable_push_handler:
+    class: Yateo\Yatpush\CommandHandler\BulkDisablePushCommandHandler
+    arguments: 
+      - '@yatpush.repository.push.repository' 
+      - '@doctrine.orm.default_entity_manager' 
+    tags:
+      - name: tactician.handler
+        command: Yateo\Yatpush\Command\BulkDisablePushCommand
+  
+  # Image
+  yatpush.uploader.config_form_image_uploader:
+    class: Yateo\Yatpush\Uploader\YatpushImageUploader

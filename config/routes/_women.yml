@@ -1,0 +1,112 @@
+yatpush_pushwomen: 
+  path: / 
+  methods: GET 
+  defaults: 
+    _controller: 'Yateo\Yatpush\Controller\Admin\YatpushConfigurationWomenController::indexAction' 
+    _disable_module_prefix: true
+    _legacy_controller: 'YatpushConfigurationWomenController' 
+    _legacy_link: 'AdminYatPushWomenCategory' 
+
+yatpush_pushwomen_search: 
+  path: / 
+  methods: POST 
+  defaults: 
+    _controller: 'Yateo\Yatpush\Controller\Admin\YatpushConfigurationWomenController::searchAction' 
+    _disable_module_prefix: true
+    _legacy_controller: 'YatpushConfigurationWomenController' 
+    _legacy_link: 'AdminYatPushWomenCategory' 
+
+yatpush_pushwomen_create:
+  path: /create
+  methods: [GET, POST]
+  defaults:
+    _controller: Yateo\Yatpush\Controller\Admin\YatpushConfigurationWomenController::createAction
+    _disable_module_prefix: true
+    _legacy_controller: 'YatpushConfigurationWomenController'
+    _legacy_link: 'AdminYatPushWomenCategory'
+
+yatpush_pushwomen_edit:
+  path: /{pushId}/edit
+  methods: [GET, POST]
+  defaults:
+    _controller: Yateo\Yatpush\Controller\Admin\YatpushConfigurationWomenController::editAction
+    _disable_module_prefix: true
+    _legacy_controller: 'YatpushConfigurationWomenController'
+    _legacy_link: 'AdminYatPushWomenCategory'
+  requirements:
+    pushId: \d+
+
+yatpush_pushwomen_delete:
+  path: /{pushId}/delete
+  methods: [GET, POST]
+  defaults:
+    _controller: Yateo\Yatpush\Controller\Admin\YatpushConfigurationWomenController::deleteAction
+    _disable_module_prefix: true
+    _legacy_controller: 'YatpushConfigurationWomenController'
+    _legacy_link: 'AdminYatPushWomenCategory'
+  requirements:
+    pushId: \d+
+
+yatpush_delete_image:
+  path: /yatpush/{pushId}/delete/image
+  methods: [POST]
+  defaults:
+    _controller: Yateo\Yatpush\Controller\Admin\YatpushConfigurationWomenController::deleteImageAction
+    _disable_module_prefix: true
+    _legacy_controller: 'YatpushConfigurationWomenController'
+    _legacy_link: 'AdminYatPushWomenCategory'
+  requirements:
+    pushId: \d+
+
+yatpush_pushwomen_toggle_status:
+  path: /{pushId}/togglestatus
+  methods: [GET, POST]
+  defaults:
+    _controller: Yateo\Yatpush\Controller\Admin\YatpushConfigurationWomenController::toggleAction
+    _disable_module_prefix: true
+    _legacy_controller: 'YatpushConfigurationWomenController'
+    _legacy_link: 'AdminYatPushWomenCategory'
+  requirements:
+    pushId: \d+
+
+
+yatpush_pushwomen_update_positions:
+  path: /update-positions
+  methods: [POST]
+  defaults:
+    _controller: 'Yateo\Yatpush\Controller\Admin\YatpushConfigurationWomenController::updatePositionsAction'
+    _legacy_controller: YatpushConfigurationWomenController
+    _legacy_link: 'AdminYatPushWomenCategory'
+
+yatpush_pushwomen_bulk_status_disable:
+  path: /bulk-disable-status
+  methods: [POST]
+  defaults:
+    _controller: 'Yateo\Yatpush\Controller\Admin\YatpushConfigurationWomenController::bulkStatusDisableAction'
+    _legacy_controller: YatpushConfigurationWomenController
+    _legacy_link: AdminYatPushWomenCategory
+
+yatpush_pushwomen_bulk_status_enable:
+  path: /bulk-enable-status
+  methods: [POST]
+  defaults:
+    _controller: 'Yateo\Yatpush\Controller\Admin\YatpushConfigurationWomenController::bulkStatusEnableAction'
+    _legacy_controller: 'YatpushConfigurationWomenController'
+    _legacy_link: 'AdminYatPushWomenCategory'
+
+yatpush_pushwomen_delete_bulk:
+  path: /delete-bulk
+  methods: [POST]
+  defaults:
+    _controller: 'Yateo\Yatpush\Controller\Admin\YatpushConfigurationWomenController::deleteBulkAction'
+    _legacy_controller: YatpushConfigurationWomenController
+    _legacy_link: AdminYatPushWomenCategory
+
+yatpush_pushwomen_export:
+  path: /export
+  methods: [GET]
+  defaults:
+    _controller: Yateo\Yatpush\Controller\Admin\YatpushConfigurationWomenController::exportAction
+    _legacy_controller: YatpushConfigurationWomenController
+    _legacy_link: AdminYatPushWomenCategory
+
