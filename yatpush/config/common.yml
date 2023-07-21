@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    public: true
+  
+  yatpush.repository.push.repository:
+    class: Yateo\Yatpush\Repository\PushRepository
+    factory: ['@doctrine.orm.default_entity_manager', getRepository]
+    arguments:
+      - Yateo\Yatpush\Entity\YateoPush
+  
+  
