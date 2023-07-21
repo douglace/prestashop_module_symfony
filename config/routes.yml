@@ -1,9 +1,0 @@
-_men:
-  resource: "routes/_men.yml"
-  prefix: "/yatpush/men"
-
-_women:
-  resource: "routes/_women.yml"
-  prefix: "/yatpush/women"
-
-

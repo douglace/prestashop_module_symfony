@@ -1,0 +1,15 @@
+{
+    "name": "yateo/yathomecategories",
+    "autoload": {
+        "psr-4": {
+            "Yateo\\Yathomecategories\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Douglace",
+            "email": "31247228+douglace@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}

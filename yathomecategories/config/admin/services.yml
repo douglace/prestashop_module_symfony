@@ -1,0 +1,121 @@
+imports:
+  - { resource: ./_*.yml }
+  - { resource: ../common.yml }
+
+services:
+  _defaults:
+    public: true
+
+  yhc.type.category:
+    class: 'Yateo\Yathomecategories\Form\Type\YHCType'
+    parent: 'form.type.translatable.aware'
+    public: true
+    tags:
+      - { name: form.type }
+
+  yhc.form.identifiable_object.data.provider.category:
+    class: 'Yateo\Yathomecategories\Form\Provider\CategoryFormDataProvider'
+    arguments:
+      - '@yhc.repository.category.repository'
+
+  yhc.form.identifiable.object.builder.category:
+    class: 'PrestaShop\PrestaShop\Core\Form\IdentifiableObject\Builder\FormBuilder'
+    factory: 'prestashop.core.form.builder.form_builder_factory:create'
+    arguments:
+      - 'Yateo\Yathomecategories\Form\Type\YHCType'
+      - '@yhc.form.identifiable_object.data.provider.category'
+
+  yhc.form.identifiable.object.handler.category:
+    class: 'PrestaShop\PrestaShop\Core\Form\IdentifiableObject\Handler\FormHandler'
+    factory: 'prestashop.core.form.identifiable_object.handler.form_handler_factory:create'
+    arguments:
+      - '@yhc.form.identifiable.object.data.handler.category'
+  
+  yhc.form.identifiable.object.data.handler.category:
+    class: 'Yateo\Yathomecategories\Form\DataHandler\CategoryFormDataHandler'
+    arguments:
+      - '@prestashop.core.command_bus' 
+      - '@yhc.command.builder.category'
+
+  yhc.command.builder.category:
+    class: 'Yateo\Yathomecategories\CommandBuilder\CategoryCommandBuilder'
+
+  yhc.command.handler.add_category: 
+    class: 'Yateo\Yathomecategories\CommandHandler\AddCategoryCommandHandler' 
+    arguments: 
+      - '@validator' 
+    tags: 
+      - { name: 'tactician.handler', command: 'Yateo\Yathomecategories\Command\AddCategoryCommand' } 
+
+  yhc.command.handler.edit_category: 
+    class: 'Yateo\Yathomecategories\CommandHandler\EditCategoryCommandHandler' 
+    arguments: 
+      - '@yhc.repository.category.repository' 
+      - '@doctrine.orm.default_entity_manager' 
+    tags: 
+      - { name: 'tactician.handler', command: 'Yateo\Yathomecategories\Command\EditCategoryCommand' } 
+
+  yhc.command.handler.delete_category: 
+    class: 'Yateo\Yathomecategories\CommandHandler\DeleteCategoryCommandHandler' 
+    arguments: 
+      - '@yhc.repository.category.repository' 
+      - '@doctrine.orm.default_entity_manager' 
+    tags: 
+      - { name: 'tactician.handler', command: 'Yateo\Yathomecategories\Command\DeleteCategoryCommand' }
+
+  yhc.command.handler.toggle_category: 
+    class: 'Yateo\Yathomecategories\CommandHandler\ToggleCategoryCommandHandler' 
+    arguments: 
+      - '@yhc.repository.category.repository' 
+      - '@doctrine.orm.default_entity_manager' 
+    tags: 
+      - { name: 'tactician.handler', command: 'Yateo\Yathomecategories\Command\ToggleCategoryCommand' } 
+  
+  # Query bus
+  yhc.query.handler.toggle.category:
+    class: Yateo\Yathomecategories\QueryHandler\GetItemIsEnabledHandler 
+    arguments: 
+      - '@yhc.repository.category.repository' 
+    tags:
+      - name: tactician.handler
+        command: Yateo\Yathomecategories\Query\GetItemIsEnabled
+
+  yhc.command_handler.bulk_delete_category_handler:
+    class: Yateo\Yathomecategories\CommandHandler\BulkDeleteCategoryCommandHandler
+    arguments: 
+      - '@yhc.repository.category.repository' 
+      - '@doctrine.orm.default_entity_manager' 
+    tags:
+      - name: tactician.handler
+        command: Yateo\Yathomecategories\Command\BulkDeleteCategoryCommand
+  
+  yhc.command_handler.bulk_enable_category_handler:
+    class: Yateo\Yathomecategories\CommandHandler\BulkEnableCategoryCommandHandler
+    arguments: 
+      - '@yhc.repository.category.repository' 
+      - '@doctrine.orm.default_entity_manager' 
+    tags:
+      - name: tactician.handler
+        command: Yateo\Yathomecategories\Command\BulkEnableCategoryCommand
+  
+  yhc.command_handler.bulk_disable_category_handler:
+    class: Yateo\Yathomecategories\CommandHandler\BulkDisableCategoryCommandHandler
+    arguments: 
+      - '@yhc.repository.category.repository' 
+      - '@doctrine.orm.default_entity_manager' 
+    tags:
+      - name: tactician.handler
+        command: Yateo\Yathomecategories\Command\BulkDisableCategoryCommand
+
+  yhc.command_handler.edit_image_times_handler:
+    class: Yateo\Yathomecategories\CommandHandler\EditImageTimesCommandHandler
+    arguments: 
+      - '@yhc.repository.category.repository' 
+      - '@doctrine.orm.default_entity_manager' 
+    tags:
+      - name: tactician.handler
+        command: Yateo\Yathomecategories\Command\EditImageTimesCommand
+  
+  # Image
+  yhc.uploader.config_form_image_uploader:
+    class: Yateo\Yathomecategories\Uploader\YatCategoryImageUploader

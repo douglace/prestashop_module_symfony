@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    public: true
+  
+  yhc.repository.category.repository:
+    class: Yateo\Yathomecategories\Repository\CategoryRepository
+    factory: ['@doctrine.orm.default_entity_manager', getRepository]
+    arguments:
+      - Yateo\Yathomecategories\Entity\YateoHomeCategories
+  
+  

@@ -1,0 +1,121 @@
+yhc_men: 
+  path: / 
+  methods: GET 
+  defaults: 
+    _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::indexAction' 
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHMenCategory' 
+    _legacy_link: 'AdminYHMenCategory' 
+
+yhc_men_search: 
+  path: / 
+  methods: POST 
+  defaults: 
+    _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::searchAction' 
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHMenCategory' 
+    _legacy_link: 'AdminYHMenCategory' 
+
+yhc_men_create:
+  path: /create
+  methods: [GET, POST]
+  defaults:
+    _controller: Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::createAction
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHMenCategory'
+    _legacy_link: 'AdminYHMenCategory'
+
+yhc_men_edit:
+  path: /{itemId}/edit
+  methods: [GET, POST]
+  defaults:
+    _controller: Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::editAction
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHMenCategory'
+    _legacy_link: 'AdminYHMenCategory'
+  requirements:
+    itemId: \d+
+
+yhc_men_delete:
+  path: /{itemId}/delete
+  methods: [GET, POST]
+  defaults:
+    _controller: Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::deleteAction
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHMenCategory'
+    _legacy_link: 'AdminYHMenCategory'
+  requirements:
+    itemId: \d+
+
+yhc_delete_image:
+  path: /{itemId}/delete/image
+  methods: [POST]
+  defaults:
+    _controller: Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::deleteImageAction
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHMenCategory'
+    _legacy_link: 'AdminYHMenCategory'
+  requirements:
+    itemId: \d+
+
+yhc_men_toggle_status:
+  path: /{itemId}/togglestatus
+  methods: [GET, POST]
+  defaults:
+    _controller: Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::toggleAction
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHMenCategory'
+    _legacy_link: 'AdminYHMenCategory'
+  requirements:
+    itemId: \d+
+
+yhc_men_update_positions:
+  path: /update-positions
+  methods: [POST]
+  defaults:
+    _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::updatePositionsAction'
+    _legacy_controller: AdminYHMenCategory
+    _legacy_link: 'AdminYHMenCategory'
+
+yhc_men_bulk_status_disable:
+  path: /bulk-disable-status
+  methods: [POST]
+  defaults:
+    _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::bulkStatusDisableAction'
+    _legacy_controller: AdminYHMenCategory
+    _legacy_link: AdminYHMenCategory
+
+yhc_men_bulk_status_enable:
+  path: /bulk-enable-status
+  methods: [POST]
+  defaults:
+    _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::bulkStatusEnableAction'
+    _legacy_controller: 'AdminYHMenCategory'
+    _legacy_link: 'AdminYHMenCategory'
+
+yhc_men_delete_bulk:
+  path: /delete-bulk
+  methods: [POST]
+  defaults:
+    _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::deleteBulkAction'
+    _legacy_controller: AdminYHMenCategory
+    _legacy_link: AdminYHMenCategory
+
+yhc_men_export:
+  path: /export
+  methods: [GET]
+  defaults:
+    _controller: Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::exportAction
+    _legacy_controller: AdminYHMenCategory
+    _legacy_link: AdminYHMenCategory
+
+yhc_men_delete_image:
+  path: /{itemId}/delete/image
+  methods: [POST]
+  defaults:
+    _controller: Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::deleteImageAction
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHMenCategory'
+    _legacy_link: 'AdminYHMenCategory'
+  requirements:
+    itemId: \d+

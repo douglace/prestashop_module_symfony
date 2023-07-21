@@ -1,0 +1,113 @@
+yhc_women: 
+  path: / 
+  methods: GET 
+  defaults: 
+    _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::indexAction' 
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHWomenCategory' 
+    _legacy_link: 'AdminYHWomenCategory' 
+
+
+yhc_women_search: 
+  path: / 
+  methods: POST 
+  defaults: 
+    _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::searchAction' 
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHWomenCategory' 
+    _legacy_link: 'AdminYHWomenCategory' 
+
+yhc_women_create:
+  path: /create
+  methods: [GET, POST]
+  defaults:
+    _controller: Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::createAction
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHWomenCategory'
+    _legacy_link: 'AdminYHWomenCategory'
+
+
+yhc_women_edit:
+  path: /{itemId}/edit
+  methods: [GET, POST]
+  defaults:
+    _controller: Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::editAction
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHWomenCategory'
+    _legacy_link: 'AdminYHWomenCategory'
+  requirements:
+    itemId: \d+
+
+yhc_women_delete:
+  path: /{itemId}/delete
+  methods: [GET, POST]
+  defaults:
+    _controller: Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::deleteAction
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHWomenCategory'
+    _legacy_link: 'AdminYHWomenCategory'
+  requirements:
+    itemId: \d+
+
+yhc_women_toggle_status:
+  path: /{itemId}/togglestatus
+  methods: [GET, POST]
+  defaults:
+    _controller: Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::toggleAction
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHWomenCategory'
+    _legacy_link: 'AdminYHWomenCategory'
+  requirements:
+    itemId: \d+
+
+
+yhc_women_update_positions:
+  path: /update-positions
+  methods: [POST]
+  defaults:
+    _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::updatePositionsAction'
+    _legacy_controller: AdminYHWomenCategory
+    _legacy_link: 'AdminYHWomenCategory'
+
+yhc_women_bulk_status_disable:
+  path: /bulk-disable-status
+  methods: [POST]
+  defaults:
+    _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::bulkStatusDisableAction'
+    _legacy_controller: AdminYHWomenCategory
+    _legacy_link: AdminYHWomenCategory
+
+yhc_women_bulk_status_enable:
+  path: /bulk-enable-status
+  methods: [POST]
+  defaults:
+    _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::bulkStatusEnableAction'
+    _legacy_controller: 'AdminYHWomenCategory'
+    _legacy_link: 'AdminYHWomenCategory'
+
+yhc_women_delete_bulk:
+  path: /delete-bulk
+  methods: [POST]
+  defaults:
+    _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::deleteBulkAction'
+    _legacy_controller: AdminYHWomenCategory
+    _legacy_link: AdminYHWomenCategory
+
+yhc_women_export:
+  path: /export
+  methods: [GET]
+  defaults:
+    _controller: Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::exportAction
+    _legacy_controller: AdminYHWomenCategory
+    _legacy_link: AdminYHWomenCategory
+
+yhc_women_delete_image:
+  path: /{itemId}/delete/image
+  methods: [POST]
+  defaults:
+    _controller: Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::deleteImageAction
+    _disable_module_prefix: true
+    _legacy_controller: 'AdminYHWomenCategory'
+    _legacy_link: 'AdminYHWomenCategory'
+  requirements:
+    itemId: \d+

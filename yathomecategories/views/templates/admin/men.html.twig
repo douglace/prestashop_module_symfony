@@ -1,0 +1,18 @@
+{% extends '@PrestaShop/Admin/layout.html.twig' %} 
+
+{% block content %}
+    {% block men_list_panel %}
+        <div class="row">
+            <div class="col">
+                {% include '@PrestaShop/Admin/Common/Grid/grid_panel.html.twig' with {'grid': menGrid} %}
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('../modules/yathomecategories/views/assets/js/men_grid.bundle.js') }}"></script>
+    <script src="{{ asset('themes/default/js/bundle/pagination.js') }}"></script>
+{% endblock %}

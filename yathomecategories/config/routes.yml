@@ -1,0 +1,7 @@
+_men:
+  resource: "routes/_men.yml"
+  prefix: "/yatcategories/men"
+
+_women:
+  resource: "routes/_women.yml"
+  prefix: "/yatcategories/women"
