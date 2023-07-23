@@ -27,6 +27,23 @@ class AdminYHMenCategory extends FrameworkBundleAdminController
     {
         $menGridFactory = $this->get('yhc.grid.grid_factory.men');
         $menGrid = $menGridFactory->getGrid($filters);
+
+        $menConfigFormDataHandler = $this->get('yhc.form.category_men_configuration_data_handler');
+        $menConfigForm = $menConfigFormDataHandler->getForm();
+        $menConfigForm->handleRequest($request);
+
+        if ($menConfigForm->isSubmitted() && $menConfigForm->isValid()) {
+            /** You can return array of errors in form handler and they can be displayed to user with flashErrors */
+            $errors = $menConfigFormDataHandler->save($menConfigForm->getData());
+
+            if (empty($errors)) {
+                $this->addFlash('success', $this->trans('Successful update.', 'Admin.Notifications.Success'));
+
+                return $this->redirectToRoute('yhc_men');
+            }
+
+            $this->flashErrors($errors);
+        }
         
         return $this->render(
             '@Modules/yathomecategories/views/templates/admin/men.html.twig',
@@ -35,6 +52,7 @@ class AdminYHMenCategory extends FrameworkBundleAdminController
                 'layoutHeaderToolbarBtn' => $this->getToolbarButtons(),
                 'layoutTitle' => $this->trans('Categories homme', 'Modules.Yathomecategories.Admin'),
                 'menGrid' => $this->presentGrid($menGrid),
+                'configForm' => $menConfigForm->createView(),
             ]
         );  
     }

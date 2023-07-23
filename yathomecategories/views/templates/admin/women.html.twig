@@ -1,7 +1,30 @@
 {% extends '@PrestaShop/Admin/layout.html.twig' %} 
 
 {% block content %}
-    {% block men_list_panel %}
+
+    {% block women_form_panel %}
+        {{ form_start(configForm) }}
+            <div class="card">
+                <h3 class="card-header">
+                    <i class="material-icons">settings</i> {{ 'Women configuration'|trans({}, 'Modules.Yathomecategories.Admin') }}
+                </h3>
+                <div class="card-body">
+                    <div class="form-wrapper">
+                        {{ form_widget(configForm) }}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary float-right" id="save-button">
+                            {{ 'Save'|trans({}, 'Admin.Actions') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        {{ form_end(configForm) }}
+    {% endblock %}
+
+    {% block women_list_panel %}
         <div class="row">
             <div class="col">
                 {% include '@PrestaShop/Admin/Common/Grid/grid_panel.html.twig' with {'grid': womenGrid} %}
@@ -15,4 +38,5 @@
 
     <script src="{{ asset('../modules/yathomecategories/views/assets/js/women_grid.bundle.js') }}"></script>
     <script src="{{ asset('themes/default/js/bundle/pagination.js') }}"></script>
+    <script src="{{ asset('../modules/yathomecategories/views/assets/js/form.bundle.js') }}"></script>
 {% endblock %}

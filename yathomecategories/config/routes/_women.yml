@@ -1,6 +1,6 @@
 yhc_women: 
   path: / 
-  methods: GET 
+  methods: [GET, PUT]
   defaults: 
     _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::indexAction' 
     _disable_module_prefix: true
@@ -9,7 +9,7 @@ yhc_women:
 
 
 yhc_women_search: 
-  path: / 
+  path: /
   methods: POST 
   defaults: 
     _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHWomenCategory::searchAction' 
@@ -25,6 +25,7 @@ yhc_women_create:
     _disable_module_prefix: true
     _legacy_controller: 'AdminYHWomenCategory'
     _legacy_link: 'AdminYHWomenCategory'
+
 
 
 yhc_women_edit:

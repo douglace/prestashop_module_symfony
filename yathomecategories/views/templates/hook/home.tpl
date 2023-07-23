@@ -9,5 +9,6 @@
                 </div>
             {/foreach}
         </div>
+        <a href="{$allLink}" class="btn btn-primary"> {l s='Voir tous les produits' d="Module.Yathomecategories.home"} </a>
     </section>
 {/if}

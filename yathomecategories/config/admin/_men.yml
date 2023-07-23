@@ -44,3 +44,21 @@ services:
       - '@prestashop.core.query.doctrine_search_criteria_applicator'
       - "@=service('prestashop.adapter.legacy.context').getContext().language.id"
       - '@prestashop.core.grid.query.filter.doctrine_filter_applicator'
+
+  yhc.form.category_men_configuration:
+    class: Yateo\Yathomecategories\Form\Data\CategoryConfigMenFormData
+    arguments: ['@prestashop.adapter.legacy.configuration']
+
+  yhc.form.category_men_configuration_data_provider:
+    class: 'Yateo\Yathomecategories\Form\Provider\CategoryConfigFormDataProvider'
+    arguments:
+      - '@yhc.form.category_men_configuration'
+
+  yhc.form.category_men_configuration_data_handler:
+    class: 'PrestaShop\PrestaShop\Core\Form\Handler'
+    arguments:
+      - '@form.factory'
+      - '@prestashop.core.hook.dispatcher'
+      - '@yhc.form.category_men_configuration_data_provider'
+      - 'Yateo\Yathomecategories\Form\Type\YHCMenConfigType'
+      - 'CategoryMenConfiguration'

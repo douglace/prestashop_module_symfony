@@ -67,15 +67,17 @@ class CategoryRepository extends EntityRepository
      * @param int $id_lang
      * @return []
      */
-    public function getItems(string $type, int $id_lang)
+    public function getItems(string $type, int $id_lang, $active = true)
     {
         $qb = $this->createQueryBuilder('a')
             ->select('a.id, a.type, a.active, a.position, b.link, b.title, a.imagetimes')
             ->join('a.categoryLangs', 'b')
             ->where('a.type = :type')
             ->setParameter('type', $type)
+            ->andWhere('a.active = :active')
             ->andWhere('b.lang = :lang')
             ->setParameter('lang', $id_lang)
+            ->setParameter('active', $active)
             ->orderBy('a.position', 'ASC')
         ;
         

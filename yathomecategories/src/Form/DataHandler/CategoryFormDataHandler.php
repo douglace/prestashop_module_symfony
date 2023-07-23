@@ -27,11 +27,11 @@
 namespace Yateo\Yathomecategories\Form\DataHandler;
 
 use PrestaShop\PrestaShop\Core\Form\IdentifiableObject\DataHandler\FormDataHandlerInterface;
-use PrestaShop\PrestaShop\Core\CommandBus\CommandBusInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Yateo\Yathomecategories\Command\EditImageTimesCommand;
 use Yateo\Yathomecategories\CommandBuilder\CategoryCommandBuilderInterface;
 use Yateo\Yathomecategories\Uploader\YatCategoryImageUploader;
+use PrestaShop\PrestaShop\Core\CommandBus\CommandBusInterface;
+use Yateo\Yathomecategories\Command\EditImageTimesCommand;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Yateo\Yathomecategories\ValueObject\ItemId;
 
 /**

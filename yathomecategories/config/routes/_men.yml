@@ -1,6 +1,6 @@
 yhc_men: 
   path: / 
-  methods: GET 
+  methods: [GET, PUT]
   defaults: 
     _controller: 'Yateo\Yathomecategories\Controller\Admin\AdminYHMenCategory::indexAction' 
     _disable_module_prefix: true

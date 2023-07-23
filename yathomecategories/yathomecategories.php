@@ -99,13 +99,18 @@ class Yathomecategories extends Module
         /** @var CategoryRepository */
         $repository = $this->get('yhc.repository.category.repository');
         $type = "MAN";
+        $id_lang = $this->context->language->id;
         $yatcontext = Module::getInstanceByName('yatmenucontext');
         if($yatcontext && $yatcontext->getSiteContext() == "CONTEXT_FEMME")
         {
             $type = "WOMAN";
+            $allLink = Configuration::get('YHC_CATEGORY_WOMEN_LINK', $id_lang); 
+        } else {
+            $allLink = Configuration::get('YHC_CATEGORY_MEN_LINK', $id_lang); 
         }
-        $items = $repository->getItems($type, $this->context->language->id);
+        $items = $repository->getItems($type, $id_lang);
         $this->context->smarty->assign('items', $items);
+        $this->context->smarty->assign('allLink', $allLink);
 
         return $this->fetch('module:'.$this->name.'/views/templates/hook/home.tpl');
     }

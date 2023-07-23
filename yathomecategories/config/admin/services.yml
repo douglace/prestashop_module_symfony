@@ -12,6 +12,20 @@ services:
     public: true
     tags:
       - { name: form.type }
+  
+  yhc.type.category.men:
+    class: 'Yateo\Yathomecategories\Form\Type\YHCMenConfigType'
+    parent: 'form.type.translatable.aware'
+    public: true
+    tags:
+      - { name: form.type }
+  
+  yhc.type.category.women:
+    class: 'Yateo\Yathomecategories\Form\Type\YHCWomenConfigType'
+    parent: 'form.type.translatable.aware'
+    public: true
+    tags:
+      - { name: form.type }
 
   yhc.form.identifiable_object.data.provider.category:
     class: 'Yateo\Yathomecategories\Form\Provider\CategoryFormDataProvider'

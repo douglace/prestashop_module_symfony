@@ -24,16 +24,34 @@ class AdminYHWomenCategory extends FrameworkBundleAdminController
      */ 
     public function indexAction(Request $request, WomenCategoryFilters $filters)
     {
-        $menGridFactory = $this->get('yhc.grid.grid_factory.women');
-        $menGrid = $menGridFactory->getGrid($filters);
+        $womenGridFactory = $this->get('yhc.grid.grid_factory.women');
+        $womenGrid = $womenGridFactory->getGrid($filters);
         
+        $womenConfigFormDataHandler = $this->get('yhc.form.category_women_configuration_data_handler');
+        $womenConfigForm = $womenConfigFormDataHandler->getForm();
+        $womenConfigForm->handleRequest($request);
+
+        if ($womenConfigForm->isSubmitted() && $womenConfigForm->isValid()) {
+            /** You can return array of errors in form handler and they can be displayed to user with flashErrors */
+            $errors = $womenConfigFormDataHandler->save($womenConfigForm->getData());
+
+            if (empty($errors)) {
+                $this->addFlash('success', $this->trans('Successful update.', 'Admin.Notifications.Success'));
+
+                return $this->redirectToRoute('yhc_women');
+            }
+
+            $this->flashErrors($errors);
+        }
+
         return $this->render(
             '@Modules/yathomecategories/views/templates/admin/women.html.twig',
             [
                 'enableSidebar' => true,
                 'layoutHeaderToolbarBtn' => $this->getToolbarButtons(),
                 'layoutTitle' => $this->trans('Categories femme', 'Modules.Yathomecategories.Admin'),
-                'womenGrid' => $this->presentGrid($menGrid),
+                'womenGrid' => $this->presentGrid($womenGrid),
+                'configForm' => $womenConfigForm->createView(),
             ]
         );  
     }
