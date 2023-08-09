@@ -1,0 +1,29 @@
+<section>
+    <h3>{{ title }}</h3>
+    <div class="row" >
+        <div class="col-md-12">
+            <div class="form-group">
+                {{ form_errors(form[title_field]) }}
+                {{ form_widget(form[title_field]) }}
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                {{ form_errors(form[description_field]) }}
+                {{ form_widget(form[description_field]) }}
+            </div>
+        </div>
+
+        {% if image_field is defined %}
+            <div class="col-md-12">
+                <div class="form-group">
+                    {{ form_errors(form[image_field]) }}
+                    {{ form_widget(form[image_field]) }}
+                </div>
+            </div>
+        {% endif %}
+        
+
+    </div>
+</section>

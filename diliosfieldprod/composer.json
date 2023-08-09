@@ -1,0 +1,15 @@
+{
+    "name": "juba/diliosfieldprod",
+    "autoload": {
+        "psr-4": {
+            "Juba\\Diliosfieldprod\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "vexi",
+            "email": "kvdouglace@gmail.com"
+        }
+    ],
+    "require": {}
+}

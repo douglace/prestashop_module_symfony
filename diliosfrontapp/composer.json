@@ -1,0 +1,15 @@
+{
+    "name": "juba/diliosfrontapp",
+    "autoload": {
+        "psr-4": {
+            "Juba\\Diliosfrontapp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "vexi",
+            "email": "kvdouglace@gmail.com"
+        }
+    ],
+    "require": {}
+}
